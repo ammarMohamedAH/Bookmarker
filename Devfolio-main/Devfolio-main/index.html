@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookmark</title>
+    <!-- font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption:wght@400;700&family=Pacifico&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <!-- fontawesome link -->
+    <link
+      rel="stylesheet"
+      href="./fonts/fontawesome-free-6.6.0-web/css/all.min.css"
+    />
+  
+    <!-- bootstrap file link -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css" />
+    <!-- main style link -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+
+  <body>
+    <div class="main text-center">
+      <div class="container">
+        <h1>Bookmarker</h1>
+        <hr />
+        <h2>
+          <i class="fa-solid fa-bookmark"></i>
+          Bookmark your favorite sites
+          <i class="fa-solid fa-bookmark"></i>
+        </h2>
+        <form class="text-start">
+          <div class="mb-3">
+            <label for="site" class="form-label fw-semibold">
+              <i class="fa-solid fa-book-bookmark"></i>
+              Site Name
+            </label>
+            <input
+              type="text"
+              placeholder="Boockmark Name"
+              id="site"
+              class="site form-control"
+              oninput="valid()"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="link" class="form-label fw-semibold">
+              <i class="fa-solid fa-link"></i>
+              Site Link
+            </label>
+            <input
+              type="text"
+              placeholder="Site Link"
+              id="link"
+              class="link form-control"
+            />
+          </div>
+          <div class="w-100 text-center">
+            <button
+              type="button"
+              class="btn btn-danger ps-4 pe-4 mx-auto"
+              id="submitBtn"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <hr />
+        <table class="table mt-4">
+          <thead>
+            <tr>
+              <th scope="col">Index</th>
+              <th scope="col">Website Name</th>
+              <th scope="col">Visit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="tableContent"></tbody>
+        </table>
+      </div>
+    </div>
+
+   
+    <!-- bootstrap icon js file link -->
+    <script src="./js/main.js"></script>
+    <!-- Sweet Alert -->
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+      integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+  </body>
+</html>
