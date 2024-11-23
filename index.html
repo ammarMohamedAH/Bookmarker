@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="./fonts/fontawesome-free-6.6.0-web/css/all.min.css"
     />
-  
+
     <!-- bootstrap file link -->
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <!-- main style link -->
@@ -44,7 +44,6 @@
               placeholder="Boockmark Name"
               id="site"
               class="site form-control"
-              oninput="valid()"
             />
           </div>
           <div class="mb-3">
@@ -77,16 +76,83 @@
               <th scope="col">Website Name</th>
               <th scope="col">Visit</th>
               <th scope="col">Delete</th>
+              <th scope="col">Update</th>
             </tr>
           </thead>
           <tbody id="tableContent"></tbody>
         </table>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Update Changes
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <form class="text-start">
+                  <div class="mb-3">
+                    <label for="siteUpdat" class="form-label fw-semibold">
+                      <i class="fa-solid fa-book-bookmark"></i>
+                      Update Name
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Boockmark Name"
+                      id="siteUpdat"
+                      class="siteUpdat form-control"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="updatelink" class="form-label fw-semibold">
+                      <i class="fa-solid fa-link"></i>
+                      Update Link
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Site Link"
+                      id="updatelink"
+                      class="updatelink form-control"
+                    />
+                  </div>
+                  <div class="w-100 text-center">
+                    <button
+                      type="button"
+                      class="btn btn-danger ps-4 pe-4 mx-auto"
+                      id="updateBtn"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                      onclick="update()"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-   
     <!-- bootstrap icon js file link -->
     <script src="./js/main.js"></script>
+    <!-- bootstrap js link -->
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <!-- Sweet Alert -->
     <!-- <script
       src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
