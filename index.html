@@ -45,6 +45,7 @@
               id="site"
               class="site form-control"
             />
+            <div class="alert alert-danger my-3 py-1 d-none">The site name must not be repeated and larger than 3 character</div>
           </div>
           <div class="mb-3">
             <label for="link" class="form-label fw-semibold">
@@ -57,12 +58,14 @@
               id="link"
               class="link form-control"
             />
+            <div class="alert alert-danger my-3 py-1 d-none">Site URL must be a valid one</div>
           </div>
           <div class="w-100 text-center">
             <button
               type="button"
               class="btn btn-danger ps-4 pe-4 mx-auto"
               id="submitBtn"
+              
             >
               Submit
             </button>
@@ -82,7 +85,7 @@
           <tbody id="tableContent"></tbody>
         </table>
 
-        <!-- Modal -->
+        <!-- Modal update -->
         <div
           class="modal fade"
           id="exampleModal"
@@ -142,6 +145,27 @@
                     </button>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Button trigger modal -->
+
+
+  <!-- Modal Error the Element dublicated-->
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel"><span></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h6><span class="text-danger"><i class="fa-solid fa-circle-right"></i></span> Site name must not be repeated and larger than 3 character</h6>
+                <h6><span class="text-danger"><i class="fa-solid fa-circle-right"></i></span> Site URL must be a valid one</h6>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
