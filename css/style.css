@@ -45,3 +45,31 @@ transition: all 0.5s;
     -webkit-text-fill-color: transparent;
 
 }
+.modal h5 span{
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+position: relative;
+}
+.modal h5 span::before{
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  position:absolute;
+  left: 125%;
+}
+.modal h5 span::after{
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 174, 0);
+  position:absolute;
+  left: 250%;
+}
