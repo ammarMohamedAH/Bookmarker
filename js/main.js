@@ -133,7 +133,7 @@ function nameUpdateValidation() {
   if (Regex.test(siteUpdat.value) && !isDuplicate) {
     siteUpdat.classList.add("is-valid");
     siteUpdat.classList.remove("is-invalid");
-    siteUpdat.nextElementSibling.classList.replace("d-block", "d-none");
+    // siteUpdat.nextElementSibling.classList.replace("d-block", "d-none");
     // make submit buttom work when its valid
     updateBtn.onclick = update;
     updateBtn.removeAttribute("data-bs-toggle");
@@ -143,13 +143,13 @@ function nameUpdateValidation() {
   } else {
     siteUpdat.classList.add("is-invalid");
     siteUpdat.classList.remove("is-valid");
-    siteUpdat.nextElementSibling.classList.replace("d-none", "d-block");
+    // siteUpdat.nextElementSibling.classList.replace("d-none", "d-block");
     // prevint updateBtn buttom from work
     updateBtn.setAttribute("data-bs-toggle", "modal");
     updateBtn.setAttribute("data-bs-target", "#errorModal");
-    updateBtn.onclick = errorData;
     updateBtn.removeAttribute("data-bs-dismiss");
     updateBtn.removeAttribute("aria-label");
+    updateBtn.onclick = errorData;
   }
 }
 
