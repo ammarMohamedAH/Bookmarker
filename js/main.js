@@ -13,28 +13,24 @@ if (localStorage.getItem("dataArr")) {
 }
 disply();
 
-function errorData() {
-
-}
+function errorData() {}
 function getData() {
-  if(siteLink.value && siteName.value){
+  if (siteLink.value && siteName.value) {
     var objData = {
       sName: siteName.value,
       sLink: siteLink.value,
       id: Date.now(),
     };
-  
+
     dataArr.push(objData);
     localStorage.setItem("dataArr", JSON.stringify(dataArr));
-  
+
     disply();
     clearData();
-  }else{
-    console.log("empty")
+  } else {
+    console.log("empty");
   }
 }
-
-
 
 function disply() {
   var box = "";
@@ -50,8 +46,9 @@ function disply() {
                 </a>
               </td>
               <td>
-                <button class="btn btn-danger" onclick="deleteItem(${dataArr[i].id
-      })">
+                <button class="btn btn-danger" onclick="deleteItem(${
+                  dataArr[i].id
+                })">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </td>
@@ -85,6 +82,7 @@ function getElementUpdate(index) {
   linkUpdate.value = dataArr[index].sLink;
 }
 
+// updateBtn.addEventListener("click", update());
 function update() {
   dataArr[globalIndex].sName = siteUpdat.value;
   dataArr[globalIndex].sLink = linkUpdate.value;
@@ -94,7 +92,7 @@ function update() {
   disply();
 }
 
-siteName.addEventListener("input", nameValidation)
+siteName.addEventListener("input", nameValidation);
 function nameValidation() {
   var Regex = /^[a-zA-z]{3,}$/;
   var isDuplicate = false;
@@ -104,53 +102,103 @@ function nameValidation() {
       break;
     }
   }
-  if (Regex.test(siteName.value) && !isDuplicate ) {
-    siteName.classList.add("is-valid")
-    siteName.classList.remove("is-invalid")
-    siteName.nextElementSibling.classList.replace("d-block",'d-none')
-// make submit buttom work when its valid
+  if (Regex.test(siteName.value) && !isDuplicate) {
+    siteName.classList.add("is-valid");
+    siteName.classList.remove("is-invalid");
+    siteName.nextElementSibling.classList.replace("d-block", "d-none");
+    // make submit buttom work when its valid
     submit.onclick = getData;
-    submit.removeAttribute("data-bs-toggle")
-    submit.removeAttribute("data-bs-target")
-
-  }
-  else {
-    siteName.classList.add("is-invalid")
-    siteName.classList.remove("is-valid")
-    siteName.nextElementSibling.classList.replace("d-none",'d-block')
-// prevint submit buttom from work
+    submit.removeAttribute("data-bs-toggle");
+    submit.removeAttribute("data-bs-target");
+  } else {
+    siteName.classList.add("is-invalid");
+    siteName.classList.remove("is-valid");
+    siteName.nextElementSibling.classList.replace("d-none", "d-block");
+    // prevint submit buttom from work
     submit.setAttribute("data-bs-toggle", "modal");
     submit.setAttribute("data-bs-target", "#errorModal");
     submit.onclick = errorData;
-
-
   }
-
 }
-siteLink.addEventListener("input",urlValidation)
-function urlValidation() {
-  var Regex2 = /^(https:\/\/www.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(.){1,}$/;
-
-  if (Regex2.test(siteLink.value))  {
-    siteLink.classList.add("is-valid")
-    siteLink.classList.remove("is-invalid")
-    siteLink.nextElementSibling.classList.replace("d-block",'d-none')
-// make submit buttom work when its valid
-    submit.onclick = getData;
-    submit.removeAttribute("data-bs-toggle")
-    submit.removeAttribute("data-bs-target")
-
+siteUpdat.addEventListener("input", nameUpdateValidation);
+function nameUpdateValidation() {
+  var Regex = /^[a-zA-z]{3,}$/;
+  var isDuplicate = false;
+  for (var i = 0; i < dataArr.length; i++) {
+    if (dataArr[i].sName.toLowerCase() === siteUpdat.value.toLowerCase()) {
+      isDuplicate = true;
+      break;
+    }
   }
-  else {
-    siteLink.classList.add("is-invalid")
-    siteLink.classList.remove("is-valid")
-    siteLink.nextElementSibling.classList.replace("d-none",'d-block')
-// prevint submit buttom from work
+  if (Regex.test(siteUpdat.value) && !isDuplicate) {
+    siteUpdat.classList.add("is-valid");
+    siteUpdat.classList.remove("is-invalid");
+    siteUpdat.nextElementSibling.classList.replace("d-block", "d-none");
+    // make submit buttom work when its valid
+    updateBtn.onclick = update;
+    updateBtn.removeAttribute("data-bs-toggle");
+    updateBtn.removeAttribute("data-bs-target");
+    updateBtn.setAttribute("data-bs-dismiss", "modal");
+    updateBtn.setAttribute("aria-label", "Close");
+  } else {
+    siteUpdat.classList.add("is-invalid");
+    siteUpdat.classList.remove("is-valid");
+    siteUpdat.nextElementSibling.classList.replace("d-none", "d-block");
+    // prevint updateBtn buttom from work
+    updateBtn.setAttribute("data-bs-toggle", "modal");
+    updateBtn.setAttribute("data-bs-target", "#errorModal");
+    updateBtn.onclick = errorData;
+    updateBtn.removeAttribute("data-bs-dismiss");
+    updateBtn.removeAttribute("aria-label");
+  }
+}
+
+siteLink.addEventListener("input", urlValidation);
+function urlValidation() {
+  var Regex2 =
+    /^(https:\/\/www.|http:\/\/www\.|https:\/\/|http:\/\/)[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(.){1,}$/;
+
+  if (Regex2.test(siteLink.value)) {
+    siteLink.classList.add("is-valid");
+    siteLink.classList.remove("is-invalid");
+    siteLink.nextElementSibling.classList.replace("d-block", "d-none");
+    // make submit buttom work when its valid
+    submit.onclick = getData;
+    submit.removeAttribute("data-bs-toggle");
+    submit.removeAttribute("data-bs-target");
+  } else {
+    siteLink.classList.add("is-invalid");
+    siteLink.classList.remove("is-valid");
+    siteLink.nextElementSibling.classList.replace("d-none", "d-block");
+    // prevint submit buttom from work
     submit.setAttribute("data-bs-toggle", "modal");
     submit.setAttribute("data-bs-target", "#errorModal");
     submit.onclick = errorData;
-
-
   }
+}
+linkUpdate.addEventListener("input", urlUpdateValidation);
+function urlUpdateValidation() {
+  var Regex2 = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
 
+  if (Regex2.test(linkUpdate.value)) {
+    linkUpdate.classList.add("is-valid");
+    linkUpdate.classList.remove("is-invalid");
+    // linkUpdate.nextElementSibling.classList.replace("d-block", "d-none");
+    // make submit buttom work when its valid
+    updateBtn.onclick = update;
+    updateBtn.removeAttribute("data-bs-toggle");
+    updateBtn.removeAttribute("data-bs-target");
+    updateBtn.setAttribute("data-bs-dismiss", "modal");
+    updateBtn.setAttribute("aria-label", "Close");
+  } else {
+    linkUpdate.classList.add("is-invalid");
+    linkUpdate.classList.remove("is-valid");
+    // linkUpdate.nextElementSibling.classList.replace("d-none", "d-block");
+    // prevint updateBtn buttom from work
+    updateBtn.setAttribute("data-bs-toggle", "modal");
+    updateBtn.setAttribute("data-bs-target", "#errorModal");
+    updateBtn.onclick = errorData;
+    updateBtn.removeAttribute("data-bs-dismiss");
+    updateBtn.removeAttribute("aria-label");
+  }
 }
