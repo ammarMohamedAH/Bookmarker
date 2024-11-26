@@ -5,6 +5,7 @@ var submit = document.getElementById("submitBtn");
 var siteUpdat = document.getElementById("siteUpdat");
 var linkUpdate = document.getElementById("updatelink");
 var updateBtn = document.getElementById("updateBtn");
+var inputSearch = document.getElementById("inputSearch");
 
 if (localStorage.getItem("dataArr")) {
   var dataArr = JSON.parse(localStorage.getItem("dataArr"));
@@ -32,14 +33,14 @@ function getData() {
   }
 }
 
-function disply() {
+function disply(data=dataArr) {
   var box = "";
-  for (var i = 0; i < dataArr.length; i++) {
-    box += `<tr id="${dataArr[i].id}">
+  for (var i = 0; i < data.length; i++) {
+    box += `<tr id="${data[i].id}">
               <th scope="row">${i + 1}</th>
-              <td>${dataArr[i].sName}</td>
+              <td>${data[i].sName}</td>
               <td>
-               <a href="${dataArr[i].sLink}" target="_blank">
+               <a href="${data[i].sLink}" target="_blank">
                 <button class="btn btn-success">
                   <i class="fa-solid fa-eye"></i>
                 </button>
@@ -47,13 +48,13 @@ function disply() {
               </td>
               <td>
                 <button class="btn btn-danger" onclick="deleteItem(${
-                  dataArr[i].id
+                  data[i].id
                 })">
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </td>
               <td>
-                <button type="button" class="btn btn-info text-white" onclick="getElementUpdate(${i})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-info text-white" onclick="getElementUpdate(${data[i].id})" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
               </td>
@@ -76,25 +77,36 @@ function deleteItem(i) {
   disply();
 }
 
-function getElementUpdate(index) {
-  globalIndex = index;
-  siteUpdat.value = dataArr[index].sName;
-  linkUpdate.value = dataArr[index].sLink;
+var dataUpdate;
+function getElementUpdate(id) {
+
+ dataUpdate = dataArr.filter(function(ele){
+    return ele.id == id;
+  })
+
+  siteUpdat.value = dataUpdate[0].sName;
+  linkUpdate.value = dataUpdate[0].sLink;
 }
 
 // updateBtn.addEventListener("click", update());
 function update() {
-  dataArr[globalIndex].sName = siteUpdat.value;
-  dataArr[globalIndex].sLink = linkUpdate.value;
-  localStorage.setItem("dataArr", JSON.stringify(dataArr));
+  for (let i = 0; i < dataArr.length; i++) {
+   
+    if (dataArr[i].id==dataUpdate[0].id) {
+    
+      dataArr[i].sName = siteUpdat.value;
+      dataArr[i].sLink = linkUpdate.value;
+    }
+    
+  }
 
-  console.log(dataArr);
+  localStorage.setItem("dataArr", JSON.stringify(dataArr));
   disply();
 }
 
 siteName.addEventListener("input", nameValidation);
 function nameValidation() {
-  var Regex = /^[a-zA-z]{3,}$/;
+  var Regex = /^[\w]{3,}$/;
   var isDuplicate = false;
   for (var i = 0; i < dataArr.length; i++) {
     if (dataArr[i].sName.toLowerCase() === siteName.value.toLowerCase()) {
@@ -198,4 +210,17 @@ function urlUpdateValidation() {
     updateBtn.removeAttribute("data-bs-dismiss");
     updateBtn.removeAttribute("aria-label");
   }
+}
+
+inputSearch.oninput=function(){
+  var searchArr=[];
+
+  for (let i = 0; i < dataArr.length; i++) {
+    if (dataArr[i].sName.trim().toLowerCase().includes(inputSearch.value.trim().toLowerCase())) {
+      searchArr.push(dataArr[i])
+    }
+    
+  }
+
+  disply(searchArr);
 }
